@@ -1,4 +1,4 @@
-package com.insper.avaliacoes.security;
+package com.insper.artigos.security;
 
 import java.util.Collection;
 import java.util.List;

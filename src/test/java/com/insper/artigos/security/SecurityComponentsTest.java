@@ -1,4 +1,4 @@
-package com.insper.avaliacoes.security;
+package com.insper.artigos.security;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

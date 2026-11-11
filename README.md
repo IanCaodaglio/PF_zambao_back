@@ -1,14 +1,15 @@
 # PF_zambao_back
 
-API de avaliações (Spring Boot 3 / Java 21) protegida por Auth0.
+API de artigos (Spring Boot 3 / Java 21) protegida por Auth0.
 
 | Rota | Quem acessa | O que faz |
 |---|---|---|
-| `POST /avaliacoes` | ADMIN | cadastra uma avaliação (`dataAvaliacao` é preenchida pelo servidor) |
-| `GET /avaliacoes` | ADMIN e USER | lista as avaliações, da mais nova para a mais antiga |
+| `POST /artigos` | ADMIN | cadastra um artigo (`titulo`, `descricao`, `prioridade` = BAIXA/MEDIA/ALTA, `emailCriador`) |
+| `DELETE /artigos/{id}` | ADMIN | remove um artigo (204; 404 se não existir) |
+| `GET /artigos` | ADMIN e USER | lista os artigos, do mais novo para o mais antigo |
 | `GET /actuator/health` | público | health check |
 
-Corpo do `POST`: `{"emailAvaliador": "...", "emailAvaliado": "...", "comentarios": "...", "nota": 0..10}`
+Corpo do `POST`: `{"titulo": "...", "descricao": "...", "prioridade": "BAIXA|MEDIA|ALTA", "emailCriador": "..."}`
 
 ## Auth0
 
@@ -19,7 +20,7 @@ Corpo do `POST`: `{"emailAvaliador": "...", "emailAvaliado": "...", "comentarios
 
 Variáveis de ambiente (todas têm valor padrão): `AUTH0_ISSUER`, `AUTH0_AUDIENCE`, `AUTH0_ROLES_CLAIM`,
 `CORS_ALLOWED_ORIGINS` (separadas por vírgula), `DB_URL`, `DB_USER`, `DB_PASSWORD`.
-Por padrão usa H2 em arquivo (`./data/avaliacoes`); no Docker o diretório `/app/data` é um volume.
+Usa PostgreSQL (`DB_URL`, `DB_USER`, `DB_PASSWORD`; padrão `localhost:5432/artigosdb`). Nos testes usa H2 em memória. No deploy o container entra na rede `rede` e fala com o container `postgres-db`; a senha vem do secret `DB_PASSWORD`.
 
 ## Rodar local
 
