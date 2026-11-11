@@ -43,6 +43,7 @@ Secrets necessários em *Settings → Secrets and variables → Actions*:
 | `EC2_HOST` | IP público ou DNS da EC2 |
 | `EC2_USER` | usuário SSH (ex.: `ubuntu` ou `ec2-user`) |
 | `EC2_SSH_KEY` | **conteúdo** completo do arquivo `.pem` |
+| `DB_PASSWORD` | senha do usuário `usuario` do container `postgres-db` |
 
 Variáveis opcionais (aba *Variables*): `AUTH0_ISSUER`, `AUTH0_AUDIENCE`, `CORS_ALLOWED_ORIGINS`.
 
