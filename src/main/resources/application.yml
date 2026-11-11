@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: avaliacoes
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/avaliacoes}
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+auth0:
+  # O issuer do Auth0 TERMINA com "/" (é assim que ele aparece na claim "iss" do token).
+  issuer: ${AUTH0_ISSUER:https://dev-vrz0ftntk7qkj44u.us.auth0.com/}
+  audience: ${AUTH0_AUDIENCE:https://avaliacoes-api}
+  roles-claim: ${AUTH0_ROLES_CLAIM:https://avaliacoes-api/roles}
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
