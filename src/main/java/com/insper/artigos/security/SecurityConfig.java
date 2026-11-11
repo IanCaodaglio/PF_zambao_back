@@ -1,4 +1,4 @@
-package com.insper.avaliacoes.security;
+package com.insper.artigos.security;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,8 +48,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/avaliacoes").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/avaliacoes").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/artigos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/artigos/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/artigos").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth -> oauth
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
@@ -81,7 +82,7 @@ public class SecurityConfig {
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .toList());
-        config.setAllowedMethods(List.of("GET", "POST", "OPTIONS"));
+        config.setAllowedMethods(List.of("GET", "POST", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

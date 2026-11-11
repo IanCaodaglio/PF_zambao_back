@@ -1,4 +1,4 @@
-package com.insper.avaliacoes.security;
+package com.insper.artigos.security;
 
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
